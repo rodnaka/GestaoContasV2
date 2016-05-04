@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBCCC00Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBCCC_001_USUA">
+          <Key>
+            <PropertyRef Name="COD_USUA" />
+          </Key>
+          <Property Name="COD_USUA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COD_ESTA_CIVI" Type="int" />
+          <Property Name="COD_ENDE" Type="int" />
+          <Property Name="COD_TELE" Type="int" />
+          <Property Name="NOM_USUA" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="NOM_SEXO" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NUM_CPF_CNPJ" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="NUM_RG" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DES_EMAIL" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="NUM_SENH" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="NOM_ORGA_EMIS" Type="varchar" MaxLength="200" />
+          <Property Name="NOM_ESTA_EMIS" Type="varchar" MaxLength="150" />
+          <Property Name="NOM_MAE" Type="varchar" MaxLength="350" />
+          <Property Name="NOM_PAI" Type="varchar" MaxLength="350" />
+          <Property Name="DES_NATU" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="DAT_INCL_USUA" Type="datetime" />
+          <Property Name="DAT_ALTE_USUA" Type="datetime" />
+          <Property Name="DAT_NASC_USUA" Type="datetime" Nullable="false" />
+          <Property Name="IND_STAT_USUA" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IND_CONS" Type="bit" />
+          <Property Name="IND_INCL" Type="bit" />
+          <Property Name="IND_ALTE" Type="bit" />
+          <Property Name="IND_EXCL" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBCCC_002_ESTA_CIVI">
+          <Key>
+            <PropertyRef Name="COD_ESTA_CIVI" />
+          </Key>
+          <Property Name="COD_ESTA_CIVI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESC_ESTA_CIVI" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="TBCCC_003_ENDE">
+          <Key>
+            <PropertyRef Name="COD_ENDE" />
+          </Key>
+          <Property Name="COD_ENDE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NUM_CEP" Type="char" MaxLength="9" />
+          <Property Name="DES_LOGR" Type="varchar" MaxLength="500" />
+          <Property Name="NUM_NUME" Type="varchar" MaxLength="15" />
+          <Property Name="DES_COMP" Type="varchar" MaxLength="150" />
+          <Property Name="DES_BAIR" Type="varchar" MaxLength="350" />
+          <Property Name="DES_CIDA" Type="varchar" MaxLength="350" />
+          <Property Name="DES_ESTA" Type="varchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="TBCCC_004_TELE">
+          <Key>
+            <PropertyRef Name="COD_TELE" />
+          </Key>
+          <Property Name="COD_TELE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NUM_DDI_CELU" Type="char" MaxLength="3" />
+          <Property Name="NUM_DDD_CELU" Type="char" MaxLength="3" />
+          <Property Name="NUM_TELE_CELU" Type="char" MaxLength="10" />
+          <Property Name="NUM_DDI_FIXO" Type="char" MaxLength="3" />
+          <Property Name="NUM_DDD_FIXO" Type="char" MaxLength="3" />
+          <Property Name="NUM_TELE_FIXO" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TBCCC_005_CONT">
+          <Key>
+            <PropertyRef Name="COD_CONT" />
+          </Key>
+          <Property Name="COD_CONT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COD_USUA" Type="int" Nullable="false" />
+          <Property Name="DES_CONT" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="NOM_USUA_CONT" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NUM_AGEN" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="NUM_CONTA" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="NUM_DAC_CONT" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="COD_BANC" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="NUM_CNPJ_CPF" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="DESC_SENH_CONT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DAT_INCL_CONT" Type="datetime" Nullable="false" />
+          <Property Name="DAT_ALTE_CONT" Type="datetime" Nullable="false" />
+          <Property Name="IND_STAT_CONT" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="NUM_FATU_ABER" Type="int" />
+        </EntityType>
+        <EntityType Name="TBCCC_006_FATU">
+          <Key>
+            <PropertyRef Name="COD_FATU" />
+          </Key>
+          <Property Name="COD_FATU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COD_CONT" Type="int" Nullable="false" />
+          <Property Name="DES_FATU" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="DAT_UPLO_FATU" Type="datetime" Nullable="false" />
+          <Property Name="DAT_VENC_FATU" Type="datetime" Nullable="false" />
+          <Property Name="IMG_BOLE_FATU" Type="varbinary(max)" Nullable="false" />
+          <Property Name="IND_STAT_FATU" Type="char" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_TBCCC_001_USUA_TBCCC_002_ESTA_CIVI">
+          <End Role="TBCCC_002_ESTA_CIVI" Type="Self.TBCCC_002_ESTA_CIVI" Multiplicity="0..1" />
+          <End Role="TBCCC_001_USUA" Type="Self.TBCCC_001_USUA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCCC_002_ESTA_CIVI">
+              <PropertyRef Name="COD_ESTA_CIVI" />
+            </Principal>
+            <Dependent Role="TBCCC_001_USUA">
+              <PropertyRef Name="COD_ESTA_CIVI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCCC_001_USUA_TBCCC_003_ENDE">
+          <End Role="TBCCC_003_ENDE" Type="Self.TBCCC_003_ENDE" Multiplicity="0..1" />
+          <End Role="TBCCC_001_USUA" Type="Self.TBCCC_001_USUA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCCC_003_ENDE">
+              <PropertyRef Name="COD_ENDE" />
+            </Principal>
+            <Dependent Role="TBCCC_001_USUA">
+              <PropertyRef Name="COD_ENDE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCCC_001_USUA_TBCCC_004_TELE">
+          <End Role="TBCCC_004_TELE" Type="Self.TBCCC_004_TELE" Multiplicity="0..1" />
+          <End Role="TBCCC_001_USUA" Type="Self.TBCCC_001_USUA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCCC_004_TELE">
+              <PropertyRef Name="COD_TELE" />
+            </Principal>
+            <Dependent Role="TBCCC_001_USUA">
+              <PropertyRef Name="COD_TELE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCCC_005_CONT_TBCCC_001_USUA">
+          <End Role="TBCCC_001_USUA" Type="Self.TBCCC_001_USUA" Multiplicity="1" />
+          <End Role="TBCCC_005_CONT" Type="Self.TBCCC_005_CONT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCCC_001_USUA">
+              <PropertyRef Name="COD_USUA" />
+            </Principal>
+            <Dependent Role="TBCCC_005_CONT">
+              <PropertyRef Name="COD_USUA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCCC_006_FATU_TBCCC_005_CONT">
+          <End Role="TBCCC_005_CONT" Type="Self.TBCCC_005_CONT" Multiplicity="1" />
+          <End Role="TBCCC_006_FATU" Type="Self.TBCCC_006_FATU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCCC_005_CONT">
+              <PropertyRef Name="COD_CONT" />
+            </Principal>
+            <Dependent Role="TBCCC_006_FATU">
+              <PropertyRef Name="COD_CONT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBCCC00ModelStoreContainer">
+          <EntitySet Name="TBCCC_001_USUA" EntityType="Self.TBCCC_001_USUA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCCC_002_ESTA_CIVI" EntityType="Self.TBCCC_002_ESTA_CIVI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCCC_003_ENDE" EntityType="Self.TBCCC_003_ENDE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCCC_004_TELE" EntityType="Self.TBCCC_004_TELE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCCC_005_CONT" EntityType="Self.TBCCC_005_CONT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCCC_006_FATU" EntityType="Self.TBCCC_006_FATU" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBCCC_001_USUA_TBCCC_002_ESTA_CIVI" Association="Self.FK_TBCCC_001_USUA_TBCCC_002_ESTA_CIVI">
+            <End Role="TBCCC_002_ESTA_CIVI" EntitySet="TBCCC_002_ESTA_CIVI" />
+            <End Role="TBCCC_001_USUA" EntitySet="TBCCC_001_USUA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCCC_001_USUA_TBCCC_003_ENDE" Association="Self.FK_TBCCC_001_USUA_TBCCC_003_ENDE">
+            <End Role="TBCCC_003_ENDE" EntitySet="TBCCC_003_ENDE" />
+            <End Role="TBCCC_001_USUA" EntitySet="TBCCC_001_USUA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCCC_001_USUA_TBCCC_004_TELE" Association="Self.FK_TBCCC_001_USUA_TBCCC_004_TELE">
+            <End Role="TBCCC_004_TELE" EntitySet="TBCCC_004_TELE" />
+            <End Role="TBCCC_001_USUA" EntitySet="TBCCC_001_USUA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCCC_005_CONT_TBCCC_001_USUA" Association="Self.FK_TBCCC_005_CONT_TBCCC_001_USUA">
+            <End Role="TBCCC_001_USUA" EntitySet="TBCCC_001_USUA" />
+            <End Role="TBCCC_005_CONT" EntitySet="TBCCC_005_CONT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCCC_006_FATU_TBCCC_005_CONT" Association="Self.FK_TBCCC_006_FATU_TBCCC_005_CONT">
+            <End Role="TBCCC_005_CONT" EntitySet="TBCCC_005_CONT" />
+            <End Role="TBCCC_006_FATU" EntitySet="TBCCC_006_FATU" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBCCC00Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBCCC_001_USUA">
+          <Key>
+            <PropertyRef Name="COD_USUA" />
+          </Key>
+          <Property Name="COD_USUA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COD_ESTA_CIVI" Type="Int32" />
+          <Property Name="COD_ENDE" Type="Int32" />
+          <Property Name="COD_TELE" Type="Int32" />
+          <Property Name="NOM_USUA" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOM_SEXO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NUM_CPF_CNPJ" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUM_RG" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DES_EMAIL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUM_SENH" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NOM_ORGA_EMIS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NOM_ESTA_EMIS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="NOM_MAE" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="NOM_PAI" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="DES_NATU" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DAT_INCL_USUA" Type="DateTime" Precision="3" />
+          <Property Name="DAT_ALTE_USUA" Type="DateTime" Precision="3" />
+          <Property Name="DAT_NASC_USUA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IND_STAT_USUA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TBCCC_002_ESTA_CIVI" Relationship="Self.FK_TBCCC_001_USUA_TBCCC_002_ESTA_CIVI" FromRole="TBCCC_001_USUA" ToRole="TBCCC_002_ESTA_CIVI" />
+          <NavigationProperty Name="TBCCC_003_ENDE" Relationship="Self.FK_TBCCC_001_USUA_TBCCC_003_ENDE" FromRole="TBCCC_001_USUA" ToRole="TBCCC_003_ENDE" />
+          <NavigationProperty Name="TBCCC_004_TELE" Relationship="Self.FK_TBCCC_001_USUA_TBCCC_004_TELE" FromRole="TBCCC_001_USUA" ToRole="TBCCC_004_TELE" />
+          <NavigationProperty Name="TBCCC_005_CONT" Relationship="Self.FK_TBCCC_005_CONT_TBCCC_001_USUA" FromRole="TBCCC_001_USUA" ToRole="TBCCC_005_CONT" />
+          <Property Name="IND_CONS" Type="Boolean" />
+          <Property Name="IND_INCL" Type="Boolean" />
+          <Property Name="IND_ALTE" Type="Boolean" />
+          <Property Name="IND_EXCL" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TBCCC_002_ESTA_CIVI">
+          <Key>
+            <PropertyRef Name="COD_ESTA_CIVI" />
+          </Key>
+          <Property Name="COD_ESTA_CIVI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESC_ESTA_CIVI" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBCCC_001_USUA" Relationship="Self.FK_TBCCC_001_USUA_TBCCC_002_ESTA_CIVI" FromRole="TBCCC_002_ESTA_CIVI" ToRole="TBCCC_001_USUA" />
+        </EntityType>
+        <EntityType Name="TBCCC_003_ENDE">
+          <Key>
+            <PropertyRef Name="COD_ENDE" />
+          </Key>
+          <Property Name="COD_ENDE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUM_CEP" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="DES_LOGR" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_NUME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DES_COMP" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DES_BAIR" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="DES_CIDA" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="DES_ESTA" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBCCC_001_USUA" Relationship="Self.FK_TBCCC_001_USUA_TBCCC_003_ENDE" FromRole="TBCCC_003_ENDE" ToRole="TBCCC_001_USUA" />
+        </EntityType>
+        <EntityType Name="TBCCC_004_TELE">
+          <Key>
+            <PropertyRef Name="COD_TELE" />
+          </Key>
+          <Property Name="COD_TELE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUM_DDI_CELU" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="NUM_DDD_CELU" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="NUM_TELE_CELU" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="NUM_DDI_FIXO" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="NUM_DDD_FIXO" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="NUM_TELE_FIXO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="TBCCC_001_USUA" Relationship="Self.FK_TBCCC_001_USUA_TBCCC_004_TELE" FromRole="TBCCC_004_TELE" ToRole="TBCCC_001_USUA" />
+        </EntityType>
+        <EntityType Name="TBCCC_005_CONT">
+          <Key>
+            <PropertyRef Name="COD_CONT" />
+          </Key>
+          <Property Name="COD_CONT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COD_USUA" Type="Int32" Nullable="false" />
+          <Property Name="DES_CONT" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOM_USUA_CONT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUM_AGEN" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NUM_CONTA" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NUM_DAC_CONT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="COD_BANC" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NUM_CNPJ_CPF" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESC_SENH_CONT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DAT_INCL_CONT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DAT_ALTE_CONT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IND_STAT_CONT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NUM_FATU_ABER" Type="Int32" />
+          <NavigationProperty Name="TBCCC_001_USUA" Relationship="Self.FK_TBCCC_005_CONT_TBCCC_001_USUA" FromRole="TBCCC_005_CONT" ToRole="TBCCC_001_USUA" />
+          <NavigationProperty Name="TBCCC_006_FATU" Relationship="Self.FK_TBCCC_006_FATU_TBCCC_005_CONT" FromRole="TBCCC_005_CONT" ToRole="TBCCC_006_FATU" />
+        </EntityType>
+        <EntityType Name="TBCCC_006_FATU">
+          <Key>
+            <PropertyRef Name="COD_FATU" />
+          </Key>
+          <Property Name="COD_FATU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COD_CONT" Type="Int32" Nullable="false" />
+          <Property Name="DES_FATU" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DAT_UPLO_FATU" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DAT_VENC_FATU" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IMG_BOLE_FATU" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="TBCCC_005_CONT" Relationship="Self.FK_TBCCC_006_FATU_TBCCC_005_CONT" FromRole="TBCCC_006_FATU" ToRole="TBCCC_005_CONT" />
+          <Property Name="IND_STAT_FATU" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_TBCCC_001_USUA_TBCCC_002_ESTA_CIVI">
+          <End Role="TBCCC_002_ESTA_CIVI" Type="Self.TBCCC_002_ESTA_CIVI" Multiplicity="0..1" />
+          <End Role="TBCCC_001_USUA" Type="Self.TBCCC_001_USUA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCCC_002_ESTA_CIVI">
+              <PropertyRef Name="COD_ESTA_CIVI" />
+            </Principal>
+            <Dependent Role="TBCCC_001_USUA">
+              <PropertyRef Name="COD_ESTA_CIVI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCCC_001_USUA_TBCCC_003_ENDE">
+          <End Role="TBCCC_003_ENDE" Type="Self.TBCCC_003_ENDE" Multiplicity="0..1" />
+          <End Role="TBCCC_001_USUA" Type="Self.TBCCC_001_USUA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCCC_003_ENDE">
+              <PropertyRef Name="COD_ENDE" />
+            </Principal>
+            <Dependent Role="TBCCC_001_USUA">
+              <PropertyRef Name="COD_ENDE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCCC_001_USUA_TBCCC_004_TELE">
+          <End Role="TBCCC_004_TELE" Type="Self.TBCCC_004_TELE" Multiplicity="0..1" />
+          <End Role="TBCCC_001_USUA" Type="Self.TBCCC_001_USUA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCCC_004_TELE">
+              <PropertyRef Name="COD_TELE" />
+            </Principal>
+            <Dependent Role="TBCCC_001_USUA">
+              <PropertyRef Name="COD_TELE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCCC_005_CONT_TBCCC_001_USUA">
+          <End Role="TBCCC_001_USUA" Type="Self.TBCCC_001_USUA" Multiplicity="1" />
+          <End Role="TBCCC_005_CONT" Type="Self.TBCCC_005_CONT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCCC_001_USUA">
+              <PropertyRef Name="COD_USUA" />
+            </Principal>
+            <Dependent Role="TBCCC_005_CONT">
+              <PropertyRef Name="COD_USUA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCCC_006_FATU_TBCCC_005_CONT">
+          <End Role="TBCCC_005_CONT" Type="Self.TBCCC_005_CONT" Multiplicity="1" />
+          <End Role="TBCCC_006_FATU" Type="Self.TBCCC_006_FATU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCCC_005_CONT">
+              <PropertyRef Name="COD_CONT" />
+            </Principal>
+            <Dependent Role="TBCCC_006_FATU">
+              <PropertyRef Name="COD_CONT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBCCC00Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBCCC_001_USUA" EntityType="Self.TBCCC_001_USUA" />
+          <EntitySet Name="TBCCC_002_ESTA_CIVI" EntityType="Self.TBCCC_002_ESTA_CIVI" />
+          <EntitySet Name="TBCCC_003_ENDE" EntityType="Self.TBCCC_003_ENDE" />
+          <EntitySet Name="TBCCC_004_TELE" EntityType="Self.TBCCC_004_TELE" />
+          <EntitySet Name="TBCCC_005_CONT" EntityType="Self.TBCCC_005_CONT" />
+          <EntitySet Name="TBCCC_006_FATU" EntityType="Self.TBCCC_006_FATU" />
+          <AssociationSet Name="FK_TBCCC_001_USUA_TBCCC_002_ESTA_CIVI" Association="Self.FK_TBCCC_001_USUA_TBCCC_002_ESTA_CIVI">
+            <End Role="TBCCC_002_ESTA_CIVI" EntitySet="TBCCC_002_ESTA_CIVI" />
+            <End Role="TBCCC_001_USUA" EntitySet="TBCCC_001_USUA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCCC_001_USUA_TBCCC_003_ENDE" Association="Self.FK_TBCCC_001_USUA_TBCCC_003_ENDE">
+            <End Role="TBCCC_003_ENDE" EntitySet="TBCCC_003_ENDE" />
+            <End Role="TBCCC_001_USUA" EntitySet="TBCCC_001_USUA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCCC_001_USUA_TBCCC_004_TELE" Association="Self.FK_TBCCC_001_USUA_TBCCC_004_TELE">
+            <End Role="TBCCC_004_TELE" EntitySet="TBCCC_004_TELE" />
+            <End Role="TBCCC_001_USUA" EntitySet="TBCCC_001_USUA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCCC_005_CONT_TBCCC_001_USUA" Association="Self.FK_TBCCC_005_CONT_TBCCC_001_USUA">
+            <End Role="TBCCC_001_USUA" EntitySet="TBCCC_001_USUA" />
+            <End Role="TBCCC_005_CONT" EntitySet="TBCCC_005_CONT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCCC_006_FATU_TBCCC_005_CONT" Association="Self.FK_TBCCC_006_FATU_TBCCC_005_CONT">
+            <End Role="TBCCC_005_CONT" EntitySet="TBCCC_005_CONT" />
+            <End Role="TBCCC_006_FATU" EntitySet="TBCCC_006_FATU" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBCCC00ModelStoreContainer" CdmEntityContainer="DBCCC00Entities">
+          <EntitySetMapping Name="TBCCC_001_USUA">
+            <EntityTypeMapping TypeName="DBCCC00Model.TBCCC_001_USUA">
+              <MappingFragment StoreEntitySet="TBCCC_001_USUA">
+                <ScalarProperty Name="IND_EXCL" ColumnName="IND_EXCL" />
+                <ScalarProperty Name="IND_ALTE" ColumnName="IND_ALTE" />
+                <ScalarProperty Name="IND_INCL" ColumnName="IND_INCL" />
+                <ScalarProperty Name="IND_CONS" ColumnName="IND_CONS" />
+                <ScalarProperty Name="COD_USUA" ColumnName="COD_USUA" />
+                <ScalarProperty Name="COD_ESTA_CIVI" ColumnName="COD_ESTA_CIVI" />
+                <ScalarProperty Name="COD_ENDE" ColumnName="COD_ENDE" />
+                <ScalarProperty Name="COD_TELE" ColumnName="COD_TELE" />
+                <ScalarProperty Name="NOM_USUA" ColumnName="NOM_USUA" />
+                <ScalarProperty Name="NOM_SEXO" ColumnName="NOM_SEXO" />
+                <ScalarProperty Name="NUM_CPF_CNPJ" ColumnName="NUM_CPF_CNPJ" />
+                <ScalarProperty Name="NUM_RG" ColumnName="NUM_RG" />
+                <ScalarProperty Name="DES_EMAIL" ColumnName="DES_EMAIL" />
+                <ScalarProperty Name="NUM_SENH" ColumnName="NUM_SENH" />
+                <ScalarProperty Name="NOM_ORGA_EMIS" ColumnName="NOM_ORGA_EMIS" />
+                <ScalarProperty Name="NOM_ESTA_EMIS" ColumnName="NOM_ESTA_EMIS" />
+                <ScalarProperty Name="NOM_MAE" ColumnName="NOM_MAE" />
+                <ScalarProperty Name="NOM_PAI" ColumnName="NOM_PAI" />
+                <ScalarProperty Name="DES_NATU" ColumnName="DES_NATU" />
+                <ScalarProperty Name="DAT_INCL_USUA" ColumnName="DAT_INCL_USUA" />
+                <ScalarProperty Name="DAT_ALTE_USUA" ColumnName="DAT_ALTE_USUA" />
+                <ScalarProperty Name="DAT_NASC_USUA" ColumnName="DAT_NASC_USUA" />
+                <ScalarProperty Name="IND_STAT_USUA" ColumnName="IND_STAT_USUA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCCC_002_ESTA_CIVI">
+            <EntityTypeMapping TypeName="DBCCC00Model.TBCCC_002_ESTA_CIVI">
+              <MappingFragment StoreEntitySet="TBCCC_002_ESTA_CIVI">
+                <ScalarProperty Name="COD_ESTA_CIVI" ColumnName="COD_ESTA_CIVI" />
+                <ScalarProperty Name="DESC_ESTA_CIVI" ColumnName="DESC_ESTA_CIVI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCCC_003_ENDE">
+            <EntityTypeMapping TypeName="DBCCC00Model.TBCCC_003_ENDE">
+              <MappingFragment StoreEntitySet="TBCCC_003_ENDE">
+                <ScalarProperty Name="COD_ENDE" ColumnName="COD_ENDE" />
+                <ScalarProperty Name="NUM_CEP" ColumnName="NUM_CEP" />
+                <ScalarProperty Name="DES_LOGR" ColumnName="DES_LOGR" />
+                <ScalarProperty Name="NUM_NUME" ColumnName="NUM_NUME" />
+                <ScalarProperty Name="DES_COMP" ColumnName="DES_COMP" />
+                <ScalarProperty Name="DES_BAIR" ColumnName="DES_BAIR" />
+                <ScalarProperty Name="DES_CIDA" ColumnName="DES_CIDA" />
+                <ScalarProperty Name="DES_ESTA" ColumnName="DES_ESTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCCC_004_TELE">
+            <EntityTypeMapping TypeName="DBCCC00Model.TBCCC_004_TELE">
+              <MappingFragment StoreEntitySet="TBCCC_004_TELE">
+                <ScalarProperty Name="COD_TELE" ColumnName="COD_TELE" />
+                <ScalarProperty Name="NUM_DDI_CELU" ColumnName="NUM_DDI_CELU" />
+                <ScalarProperty Name="NUM_DDD_CELU" ColumnName="NUM_DDD_CELU" />
+                <ScalarProperty Name="NUM_TELE_CELU" ColumnName="NUM_TELE_CELU" />
+                <ScalarProperty Name="NUM_DDI_FIXO" ColumnName="NUM_DDI_FIXO" />
+                <ScalarProperty Name="NUM_DDD_FIXO" ColumnName="NUM_DDD_FIXO" />
+                <ScalarProperty Name="NUM_TELE_FIXO" ColumnName="NUM_TELE_FIXO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCCC_005_CONT">
+            <EntityTypeMapping TypeName="DBCCC00Model.TBCCC_005_CONT">
+              <MappingFragment StoreEntitySet="TBCCC_005_CONT">
+                <ScalarProperty Name="COD_CONT" ColumnName="COD_CONT" />
+                <ScalarProperty Name="COD_USUA" ColumnName="COD_USUA" />
+                <ScalarProperty Name="DES_CONT" ColumnName="DES_CONT" />
+                <ScalarProperty Name="NOM_USUA_CONT" ColumnName="NOM_USUA_CONT" />
+                <ScalarProperty Name="NUM_AGEN" ColumnName="NUM_AGEN" />
+                <ScalarProperty Name="NUM_CONTA" ColumnName="NUM_CONTA" />
+                <ScalarProperty Name="NUM_DAC_CONT" ColumnName="NUM_DAC_CONT" />
+                <ScalarProperty Name="COD_BANC" ColumnName="COD_BANC" />
+                <ScalarProperty Name="NUM_CNPJ_CPF" ColumnName="NUM_CNPJ_CPF" />
+                <ScalarProperty Name="DESC_SENH_CONT" ColumnName="DESC_SENH_CONT" />
+                <ScalarProperty Name="DAT_INCL_CONT" ColumnName="DAT_INCL_CONT" />
+                <ScalarProperty Name="DAT_ALTE_CONT" ColumnName="DAT_ALTE_CONT" />
+                <ScalarProperty Name="IND_STAT_CONT" ColumnName="IND_STAT_CONT" />
+                <ScalarProperty Name="NUM_FATU_ABER" ColumnName="NUM_FATU_ABER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCCC_006_FATU">
+            <EntityTypeMapping TypeName="DBCCC00Model.TBCCC_006_FATU">
+              <MappingFragment StoreEntitySet="TBCCC_006_FATU">
+                <ScalarProperty Name="IND_STAT_FATU" ColumnName="IND_STAT_FATU" />
+                <ScalarProperty Name="COD_FATU" ColumnName="COD_FATU" />
+                <ScalarProperty Name="COD_CONT" ColumnName="COD_CONT" />
+                <ScalarProperty Name="DES_FATU" ColumnName="DES_FATU" />
+                <ScalarProperty Name="DAT_UPLO_FATU" ColumnName="DAT_UPLO_FATU" />
+                <ScalarProperty Name="DAT_VENC_FATU" ColumnName="DAT_VENC_FATU" />
+                <ScalarProperty Name="IMG_BOLE_FATU" ColumnName="IMG_BOLE_FATU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

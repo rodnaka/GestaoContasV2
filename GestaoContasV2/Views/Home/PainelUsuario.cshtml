@@ -1,0 +1,72 @@
+﻿
+@section scripts {
+
+    <link href="~/Content/CustomStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/AngularController/PainelAngularController.js"></script>
+}
+
+<div ng-app="PainelAngularController" id="body1">
+    <div class="container-fluid" ng-controller="AngularJs_PainelController">
+        
+        <div class="row">
+            <div class="col-sm-2 col-md-2 sidebar">
+                <br />
+                <h1 class="page-header">Pastas</h1>
+                <ul class="nav nav-sidebar" ng-repeat="conta in Contas" ><li>
+                    <a  ng-href="/api/fatura/selecionarFatura?descricaoFatura=null&codigoConta={{conta.COD_CONT}}&codigoFatura=0">{{conta.DES_CONT}}</a></li>
+
+                </ul>
+            </div>
+            <!--<div class="col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
+            <div class="col-sm-4 col-md-4 main">
+                <br />
+                <h1 class="page-header">Faturas</h1>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Data Upload</th>
+                                <th>Data Vencimento</th>
+                                <th>Situação</th>
+                                <th style="text-align:center">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="fatura in Faturas">
+                                <td>{{fatura.DES_FATU}}</td>
+                                <td>{{fatura.DAT_UPLO_FATU)}}</td>
+                                <td>{{fatura.DAT_VENC_FATU}}</td>
+                                <td ng-if="fatura.IND_STAT_FATU == 'A'">Em aberto</td>
+                                <td ng-if="fatura.IND_STAT_FATU == 'F'">Pago</td>
+                                <td>
+                                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                        Visualizar
+                                    </button>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 main">
+                <br />
+                <h2 class="page-header">Detalhe da Fatura</h2>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">Fatura Digital</h4>
+                        </div>
+                        <div class="modal-body">
+                            <object type="application/pdf" data="http://www.inkwelleditorial.com/pdfSample.pdf" width="500" height="500">this is not working as expected</object>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

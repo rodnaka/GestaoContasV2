@@ -1,0 +1,170 @@
+﻿@{
+    ViewBag.Title = "Cadastro Contas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts {
+
+    <link href="~/Content/CustomStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/AngularController/ContaAngularController.js"></script>
+}
+
+<div ng-app="ContaAngularController" id="body">
+    <div class="container-fluid" ng-controller="AngularJs_ContaController">
+        <div class="row" ng-model="Logado">
+            <h1 class="page-header">Bem Vindo {{NOM_USUA}}</h1>
+        </div>
+        <div class="row" ng-show="showItem">
+            <form class="form-inline">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Pesquisar Conta</legend>
+                    <div class="row">
+                        <!-- Text input-->
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="txtNomePesquisa">Nome Conta:</label>
+                            <input id="txtNomePesquisa" name="txtNomePesquisa" placeholder="placeholder" class="form-control input-md" type="text" ng-model="stdNomeConta">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="txtEmailPesquisa">Descrição Conta:</label>
+                            <input id="txtEmailPesquisa" name="txtEmailPesquisa" placeholder="placeholder" class="form-control input-md" type="text" ng-model="stdDescricaoConta">
+                        </div>
+                        <!-- Button -->
+                        <div class="form-group col-md-4">
+                            <button id="btnPesquisar" name="btnPesquisar" class="btn btn-primary" ng-click="searchDetails()">Pesquisar</button>
+                            <button id="btnNovo" name="btnNovo" class="btn btn-primary" ng-click="exibirCadastro()">Novo</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <br />
+        <div class="row" ng-show="addEdit">
+            <form class="form-group" novalidate name="formSalvar" ng-submit="salvarConta()">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Cadastro Conta</legend>
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="txtCodigoContaCadastro">Código Conta:</label>
+                            <input id="txtCodigoContaCadastro" name="txtCodigoContaCadastro" placeholder="placeholder" class="form-control input-md"
+                                   type="text" ng-model="COD_CONT" readonly>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="control-label" for="txtCodigoUsuarioCadastro">Código Usuário:</label>
+                            <input id="txtCodigoUsuarioCadastro" name="txtCodigoUsuarioCadastro" placeholder="placeholder" class="form-control input-md"
+                                   type="text" ng-model="COD_USUA" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="txtDescricaoContaCadastro">Descrição Conta:</label>
+                            <input id="txtDescricaoContaCadastro" name="txtDescricaoContaCadastro" class="form-control input-md" type="text" ng-model="DES_CONT"
+                                   placeholder="Descrição Conta..." required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="txtNomeUsuarioContaCadastro">Nome Usuário Conta:</label>
+                            <input id="txtNomeUsuarioContaCadastro" name="txtNomeUsuarioContaCadastro" class="form-control input-md" type="text" ng-model="NOM_USUA_CONT"
+                                   placeholder="Nome Usuário Conta..." required>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="txtCodigoBancoCadastro">Código Banco:</label>
+                            <input id="txtCodigoBancoCadastro" name="txtCodigoBancoCadastro" class="form-control input-md" type="text" ng-model="COD_BANC"
+                                   placeholder="Código Banco..." required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="txtAgencia">Agência:</label>
+                            <input id="txtAgencia" name="txtAgencia" class="form-control input-md" type="text" ng-model="NUM_AGEN"
+                                   placeholder="Agência..." required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="txtConta">Conta:</label>
+                            <input id="txtConta" name="txtConta" class="form-control input-md" type="text" ng-model="NUM_CONTA"
+                                   placeholder="Conta..." required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label" for="txtDAC">DAC:</label>
+                            <input id="txtDAC" name="txtDAC" class="form-control input-md" type="text" ng-model="NUM_DAC_CONT"
+                                   placeholder="DAC..." required>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="txtCPFCadastro">CPF:</label>
+                            <input id="txtCPFCadastro" name="txtCPFCadastro" class="form-control input-md" type="text" ng-model="NUM_CNPJ_CPF"
+                                   placeholder="CPF..." required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="txtSenhaCadastro">Senha Conta:</label>
+                            <input id="txtSenhaCadastro" name="txtSenhaCadastro" class="form-control input-md" type="password" ng-model="DESC_SENH_CONT"
+                                   placeholder="Nome Pai..." required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Button -->
+                        <div class="col-md-12">
+
+                            <input type="submit" class="btn btn-primary" value="Salvar" required />
+                            <a href="~/Home/CadastroConta" class="btn btn-default">Cancelar</a>
+
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+        <br />
+        <div class="row" ng-show="showList">
+            <form class="form-group">
+                <fieldset>
+                    <legend>Lista de Contas</legend>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Descrição Conta</th>
+                                    <th>Nome Usuario Conta</th>
+                                    <th>Banco</th>
+                                    <th>CPF</th>
+                                    <th style="text-align:center">Ação</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="conta in Contas">                                    
+                                    <td><span>{{conta.DES_CONT}}</span></td>
+                                    <td><span>{{conta.NOM_USUA_CONT}}</span></td>
+                                    <td><span>{{conta.COD_BANC}}</span></td>
+                                    <td><span>{{conta.NUM_CNPJ_CPF}}</span></td>
+                                    <td align="center">
+                                        <span>
+                                            <button type="button" class="btn btn-danger" alt="Delete" ng-click="contaDelete(conta.COD_CONT,conta.NOM_USUA_CONT)">Deletar</button>
+                                            <button type="button" class="btn btn-warning" alt="Editar"
+                                                    ng-click="contaEditar(conta.COD_CONT, conta.COD_USUA, conta.DES_CONT, conta.NOM_USUA_CONT, conta.NUM_AGEN, conta.NUM_CONTA
+                                                                        , conta.NUM_DAC_CONT, conta.COD_BANC, conta.NUM_CNPJ_CPF, conta.DESC_SENH_CONT, conta.DAT_INCL_CONT
+                                                                        , conta.DAT_ALTE_CONT, conta.IND_STAT_CONT, conta.NUM_FATU_ABER)">
+                                                Editar
+                                            </button>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+

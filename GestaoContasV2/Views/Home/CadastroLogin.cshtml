@@ -1,0 +1,163 @@
+﻿@{
+    ViewBag.Title = "Cadastro Usuário | Contas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts {
+
+    <link href="~/Content/CustomStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/AngularController/LoginAngularController.js"></script>
+}
+
+<div ng-app="LoginAngularController" id="body">
+    <div class="container-fluid" ng-controller="AngularJs_LoginController">
+        <br/>
+        <form class="form-group" novalidate name="formSalvar" ng-submit="salvarUsuario()">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Cadastro Usuário</legend>                
+                <!-- Text input-->
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtNomeCadastro">Nome:</label>
+                        <input id="txtNomeCadastro" name="txtNomeCadastro" class="form-control input-md" type="text" ng-model="NOM_USUA"
+                               placeholder="Nome..." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtCPFCadastro">CPF:</label>
+                        <input id="txtCPFCadastro" name="txtCPFCadastro" class="form-control input-md" type="text" ng-model="NUM_CPF_CNPJ"
+                               placeholder="CPF..." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtRGCadastro">RG:</label>
+                        <input id="txtRGCadastro" name="txtRGCadastro" class="form-control input-md" type="text" ng-model="NUM_RG"
+                               placeholder="RG..." required>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="ddlSexo">Sexo:</label>
+                        <select id="ddlSexo" name="ddlSexo" class="form-control" ng-model="NOM_SEXO" ng-selected="item.COD_ESTA_CIVI == COD_ESTA_CIVI">
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtEmailCadastro">E-mail:</label>
+                        <input id="txtEmailCadastro" name="txtEmailCadastro" class="form-control input-md" type="text" ng-model="DES_EMAIL"
+                               placeholder="E-mail..." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtSenha">Senha:</label>
+                        <input id="txtSenha" name="txtSenha" class="form-control input-md" type="password" ng-model="NUM_SENH"
+                               placeholder="Senha..." required>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtNomeMaeCadastro">Nome Mãe:</label>
+
+                        <input id="txtNomeMaeCadastro" name="txtNomeMaeCadastro" class="form-control input-md" type="text" ng-model="NOM_MAE"
+                               placeholder="Nome Mãe..." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtNomePaiCadastro">Nome Pai:</label>
+                        <input id="txtNomePaiCadastro" name="txtNomePaiCadastro" class="form-control input-md" type="text" ng-model="NOM_PAI"
+                               placeholder="Nome Pai..." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtNaturalidadeCadastro">Naturalidade:</label>
+                        <input id="txtNaturalidadeCadastro" name="txtNaturalidadeCadastro" class="form-control input-md" type="text" ng-model="DES_NATU"
+                               placeholder="Naturalidade..." required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtDataNascimentoCadastro">Data Nascimento:</label>
+                        <input id="txtDataNascimentoCadastro" name="txtDataNascimentoCadastro" class="form-control input-md" type="text" ng-model="DAT_NASC_USUA"
+                               placeholder="Data Nascimento..." required>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label class="control-label" for="ddlEstadoCivil">Estado Civil:</label>
+                        <select id="ddlEstadoCivil" name="ddlEstadoCivil" class="form-control" ng-model="COD_ESTA_CIVI">
+                            <option ng-repeat="item in EstadoCivil" ng-selected="item.COD_ESTA_CIVI == COD_ESTA_CIVI" value="{{item.COD_ESTA_CIVI}}">{{item.DESC_ESTA_CIVI}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtLogradouroCadastro">Logradouro:</label>
+                        <input id="txtLogradouroCadastro" name="txtLogradouroCadastro" class="form-control input-md" type="text" ng-model="DES_LOGR"
+                               placeholder="Logradouro..." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtNumeroCadastro">Numero:</label>
+                        <input id="txtNumeroCadastro" name="txtNumeroCadastro" class="form-control input-md" type="text" ng-model="NUM_NUME"
+                               placeholder="Numero..." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtComplementoCadastro">Complemento:</label>
+                        <input id="txtComplementoCadastro" name="txtComplementoCadastro" class="form-control input-md" type="text" ng-model="DES_COMP"
+                               placeholder="Complemento..." required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtCidadeCadastro">Cidade:</label>
+                        <input id="txtCidadeCadastro" name="txtCidadeCadastro" class="form-control input-md" type="text" ng-model="DES_CIDA"
+                               placeholder="Cidade..." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtEstadoCadastro">Estado:</label>
+                        <input id="txtEstadoCadastro" name="txtEstadoCadastro" class="form-control input-md" type="text" ng-model="DES_ESTA"
+                               placeholder="Estado..." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtBairroCadastro">Bairro:</label>
+                        <input id="txtBairroCadastro" name="txtBairroCadastro" class="form-control input-md" type="text" ng-model="DES_BAIR"
+                               placeholder="Bairro..." required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtCepCadastro">Cep:</label>
+                        <input id="txtCepCadastro" name="txtCepCadastro" class="form-control input-md" type="text" ng-model="NUM_CEP"
+                               placeholder="Cep..." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtDDDTelFixoCadastro">DDD Tel. Fixo:</label>
+                        <input id="txtDDDTelFixoCadastro" name="txtDDDTelFixoCadastro" class="form-control input-md" type="text" ng-model="NUM_DDD_FIXO"
+                               placeholder="DD Tel. Fixo..." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtTelFixoCadastro">Tel.Fixo:</label>
+                        <input id="txtTelFixoCadastro" name="txtTelFixoCadastro" class="form-control input-md" type="text" ng-model="NUM_TELE_FIXO"
+                               placeholder="Tel.Fixo..." required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="txtDDDCelularCadastro">DDD Celular:</label>
+                        <input id="txtDDDCelularCadastro" name="txtDDDCelularCadastro" class="form-control input-md" type="text" ng-model="NUM_DDD_CELU"
+                               placeholder="DDD Celular..." required>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label class="control-label" for="txtCelularCadastro">Celular:</label>
+                        <input id="txtCelularCadastro" name="txtCelularCadastro" class="form-control input-md" type="text" ng-model="NUM_TELE_CELU"
+                               placeholder="Celular..." required>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Button -->
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-primary" value="Salvar" required />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+

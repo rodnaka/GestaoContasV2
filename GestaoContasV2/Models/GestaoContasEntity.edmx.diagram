@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9285c8d24f6842bfbd8f128c302eef15" Name="Diagram1">
+        <EntityTypeShape EntityType="DBCCC00Model.TBCCC_001_USUA" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCCC00Model.TBCCC_002_ESTA_CIVI" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCCC00Model.TBCCC_003_ENDE" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCCC00Model.TBCCC_004_TELE" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCCC00Model.TBCCC_005_CONT" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCCC00Model.TBCCC_006_FATU" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="DBCCC00Model.FK_TBCCC_001_USUA_TBCCC_002_ESTA_CIVI" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCCC00Model.FK_TBCCC_001_USUA_TBCCC_003_ENDE" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCCC00Model.FK_TBCCC_001_USUA_TBCCC_004_TELE" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCCC00Model.FK_TBCCC_005_CONT_TBCCC_001_USUA" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCCC00Model.FK_TBCCC_006_FATU_TBCCC_005_CONT" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
