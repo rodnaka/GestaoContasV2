@@ -11,7 +11,7 @@
        
         $scope.COD_FATU = 0;
         $scope.COD_CONT = 0;
-        $scope.COD_USUA = document.cookie.replace("SESSAO=", "").split("&")[0].split("=")[1];
+        $scope.COD_USUA = GetCookie();
         $scope.DES_FATU = "";
         $scope.DAT_UPLO_FATU = "";
         $scope.DAT_VENC_FATU = "";
@@ -400,6 +400,15 @@
             }
 
             return '';
+        }
+
+        function GetCookie() {
+            if (document.cookie.split(";").length > 1) {
+                return document.cookie.split(";")[1].replace("SESSAO=", "").split("&")[0].split("=")[1];
+
+            }
+            else
+                return document.cookie.replace("SESSAO=", "").split("&")[0].split("=")[1];
         }
        
     }]);

@@ -65,10 +65,10 @@
             //Edit Student Details
             $scope.contaEditar = function contaEditar(COD_CONT, COD_USUA, DES_CONT, NOM_USUA_CONT, NUM_AGEN, NUM_CONTA, NUM_DAC_CONT
                 , COD_BANC, NUM_CNPJ_CPF, DESC_SENH_CONT, DAT_INCL_CONT, DAT_ALTE_CONT, IND_STAT_CONT, NUM_FATU_ABER) {
-                           
+                
                 cleardetails();
                 $scope.COD_CONT = COD_CONT;
-                $scope.COD_USUA = document.cookie.replace("SESSAO=", "").split("&")[0].split("=")[1];
+                $scope.COD_USUA = GetCookie();
                 $scope.DES_CONT = DES_CONT;
                 $scope.NOM_USUA_CONT = NOM_USUA_CONT;
                 $scope.NUM_AGEN = NUM_AGEN;
@@ -164,7 +164,7 @@
 
                     $scope.tbcc005 = {
                         COD_CONT: $scope.COD_CONT,
-                        COD_USUA: document.cookie.replace("SESSAO=", "").split("&")[0].split("=")[1],
+                        COD_USUA: GetCookie(),
                         DES_CONT: $scope.DES_CONT,
                         NOM_USUA_CONT: $scope.NOM_USUA_CONT,
                         NUM_AGEN: $scope.NUM_AGEN,
@@ -214,6 +214,16 @@
                 else {
                     $scope.Message = "All the fields are required.";
                 }
+            }
+
+            function GetCookie()
+            {
+                if (document.cookie.split(";").length > 1) {
+                    return document.cookie.split(";")[1].replace("SESSAO=", "").split("&")[0].split("=")[1];
+
+                }
+                else
+                    return document.cookie.replace("SESSAO=", "").split("&")[0].split("=")[1];
             }
 
         }]);
