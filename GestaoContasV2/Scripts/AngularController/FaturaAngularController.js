@@ -174,9 +174,7 @@
 
         // New Student Add Details
         $scope.atualizarValorData = function (id, valor) {
-
-           
-            debugger;
+    
             $scope.id = valor;
         }
 
@@ -261,7 +259,7 @@
                     
 
                         $scope.retornoInserir = data;
-                        alert('Operação efetuado com sucesso!');
+                        alert('Processamento efetuado com sucesso!');
 
                         cleardetails();
 
@@ -282,7 +280,7 @@
                         transformRequest: angular.identity
                     }).success(function (data) {
                         $scope.retornoAlterar = data;
-                        alert('Operação efetuado com sucesso!');
+                        alert('Processamento efetuado com sucesso!');
 
                         cleardetails();
 

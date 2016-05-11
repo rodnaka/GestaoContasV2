@@ -9,8 +9,7 @@
         ["$scope", "$timeout", "$rootScope", "$window", "$http",
         function ($scope, $timeout, $rootScope, $window, $http) {
                
-            $scope.COD_CONT = 0;
-            //$scope.COD_USUA = document.cookie;
+            $scope.COD_CONT = 0;            
             $scope.DES_CONT = "";
             $scope.NOM_USUA_CONT = "";
             $scope.NUM_AGEN = "";
@@ -159,7 +158,7 @@
 
             //Save Student
             $scope.salvarConta = function () {
-                debugger;
+               
                 $scope.IsFormSubmitted = true;
                 if ($scope.IsFormValid) {               
 
@@ -182,13 +181,11 @@
 
                     //if the Student ID=0 means its new Student insert here i will call the Web api insert method
                     if ($scope.COD_CONT == 0) {
-
-                        //$scope.tbcc005.COD_USUA = $scope.Logado.COD_USUA;
-                                        
+                    
                         $http.post('/api/conta/inserirConta/', $scope.tbcc005).success(function (data) {
 
                             $scope.retornoInserir = data;
-                            alert($scope.retornoInserir);
+                            alert('Processamento efetuado com sucesso!');
 
                             cleardetails();
                             selectDetalhar('', '');
@@ -198,13 +195,11 @@
                      $scope.error = "An Error has occured while loading posts!";
                  });
                     }
-                    else {  // to update to the student details
-
-                        //$scope.tbcc005.COD_CONT = $scope.COD_CONT;
+                    else {  
 
                         $http.put('/api/conta/alterarConta/', $scope.tbcc005).success(function (data) {
                             $scope.retornoAlterar = data;
-                            alert($scope.retornoAlterar);
+                            alert('Processamento efetuado com sucesso!');
 
                             cleardetails();
                             selectDetalhar('', '');

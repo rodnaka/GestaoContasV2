@@ -78,7 +78,7 @@
 
                 $scope.EstadoCivil = data;
             })
-           .error(function (data) {debugger;
+           .error(function (data) {
                $scope.error = "An Error has occured while loading posts!";
            });
         }
@@ -150,7 +150,7 @@
                 $http.post('/api/login/inserirUsuario/', $scope.Usuario).success(function (data) {
 
                     $scope.StudentsInserted = data;
-                    alert('Operação efetuado com sucesso!');
+                    alert('Processamento efetuado com sucesso!');
 
                     cleardetails();
                     $window.location.href = '/Home/Index';
