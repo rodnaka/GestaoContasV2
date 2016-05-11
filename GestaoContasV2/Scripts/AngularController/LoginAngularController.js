@@ -1,15 +1,11 @@
 ﻿
 
-var app;
-
-
-(function () {
+(function() {
+    
+    'use strict';
    
-    app = angular.module("LoginAngularController", ['ngAnimate']);
-})();
-
-
-app.controller("AngularJs_LoginController",
+ angular.module("LoginAngularController", ['ngAnimate'])
+.controller("AngularJs_LoginController",
     ["$scope", "$timeout", "$rootScope", "$window", "$http",
     function ($scope, $timeout, $rootScope, $window, $http) {
                
@@ -50,24 +46,25 @@ app.controller("AngularJs_LoginController",
         
         $scope.stdSenha = "";
         $scope.stdEmail = "";
+       
+        selecionarEstadoCivilTodos();        
 
-        selecionarEstadoCivilTodos('', '');
+        function verificarUsuarioLogado() {
+             
 
-        function selectDetalharUsuario(UsuarioEmail, UsuarioSenha) {
-            
             var data1 = $.param({
-                emailUsuario: UsuarioEmail,
-                senhalUsuario: UsuarioSenha
+                emailUsuario: $scope.stdEmail,
+                senhalUsuario: $scope.stdSenha
             });
             
-            $http.get('/api/login/selecionarUsuario?' + data1).success(function (data) {
+            $http.get('/api/login/GetUsuarioLogado?' + data1).success(function (data) {
                
                 $scope.Login = data;
-
-                if(data != null)
-                {
-                    $window.location.href = '/Home/Index';
-                }
+                
+                if(data != null)                
+                    $window.location.href = '/Home/Index';                
+                else
+                    alert('Usuário não cadastrado');
             })
            .error(function (data) {
                $scope.error = "An Error has occured while loading posts!";
@@ -81,14 +78,15 @@ app.controller("AngularJs_LoginController",
 
                 $scope.EstadoCivil = data;
             })
-           .error(function (data) {
+           .error(function (data) {debugger;
                $scope.error = "An Error has occured while loading posts!";
            });
         }
 
         //Search
         $scope.searchStudentDetails = function () {
-            selectDetalharUsuario($scope.stdEmail, $scope.stdSenha);
+            
+            verificarUsuarioLogado();
         }
                 
         //Form Validation
@@ -169,4 +167,4 @@ app.controller("AngularJs_LoginController",
 
     }]);
 
-
+}());

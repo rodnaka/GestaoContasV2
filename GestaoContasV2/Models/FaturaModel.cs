@@ -26,6 +26,13 @@ namespace GestaoContasV2.Models
             return entity.TBCCC_006_FATU.Where(s => s.COD_FATU == codigoFatura ||  s.COD_CONT == codigoConta || s.DES_FATU.Contains(descricaoFatura)).ToList();            
         }
 
+        public List<TBCCC_006_FATU> findContaFatura(int codigoConta)
+        {
+            entity = new DBCCC00Entities();
+
+            return entity.TBCCC_006_FATU.Where(s => s.COD_CONT == codigoConta).ToList();
+        }
+
         public int Inserir(TBCCC_006_FATU tbcc006)
         {
             entity = new DBCCC00Entities();
@@ -62,7 +69,7 @@ namespace GestaoContasV2.Models
         {
             var temp = new DBCCC00Entities().TBCCC_006_FATU.Where(s => s.COD_FATU == codigoFatura).FirstOrDefault();
 
-            temp.IND_STAT_FATU = "P";
+            temp.IND_STAT_FATU = "P";            
 
             return Alterar(temp);
 

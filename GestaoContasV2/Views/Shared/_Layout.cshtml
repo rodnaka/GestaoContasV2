@@ -3,46 +3,72 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="refresh">
     <title>@ViewBag.Title</title>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+    @*<script src="~/Scripts/AngularController/LoginAngularController.js"></script>*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
+
                 @*@Html.ActionLink("Gestão Contas", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Login", "Login", "Home", new { area = "" }, null)</li>  
-                    <li>@Html.ActionLink("Painel Usuário", "CadastroFatura", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Cadastro Usuário", "CadastroUsuario", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Cadastro Contas", "CadastroConta", "Home", new { area = "" }, null)</li>
-                </ul>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                @if (HttpContext.Current.Request.Cookies != null &&
+                    HttpContext.Current.Request.Cookies.Count > 0 &&
+                    HttpContext.Current.Request.Cookies["SESSAO"] != null &&
+                    HttpContext.Current.Request.Cookies["SESSAO"]["COD_USUA"] != null)
+                {
+                    <ul class="nav navbar-nav">
+
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                        @*<li>@Html.ActionLink("Login", "Login", "Home", new { area = "" }, null)</li>*@
+                        <li>@Html.ActionLink("Painel Usuário", "CadastroFatura", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Cadastro Usuário", "CadastroUsuario", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Cadastro Contas", "CadastroConta", "Home", new { area = "" }, null)</li>
+                        <li>teste</li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Bem Vindo " + HttpContext.Current.Request.Cookies["SESSAO"]["NOM_USUA"], "#", "#", new { area = "" }, null)</li>
+                        @*<li><a href="~/Home/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>*@
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink(" ", "Login", "Home", new { area = "" }, null)</li>
+                        <li>@{Url.Action("Login", "Home");}</li>
+                    </ul>
+                            }
             </div>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
+
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - NAKATECHSOLUTION</p>
         </footer>
     </div>
-
-   
-   
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     @RenderSection("styles", required: false)
 </body>
+
+
+
 </html>

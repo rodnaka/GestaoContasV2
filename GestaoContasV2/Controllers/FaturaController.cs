@@ -46,22 +46,24 @@ namespace GestaoContas.Controllers
             if (httpRequest.Files.Count > 0)
             {
                 var file = httpRequest.Files[0];
-                var artworkjson = httpRequest.Form[0];
-                var artwork = JsonConvert.DeserializeObject<TBCCC_006_FATU>(artworkjson);
-                if (artwork == null)
+                var objFatura = httpRequest.Form[0];
+                var objPersFatura = JsonConvert.DeserializeObject<TBCCC_006_FATU>(objFatura);
+                if (objPersFatura == null)
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "No saved");
                 }
 
                 using (var binaryReader = new BinaryReader(file.InputStream))
                 {
-                    artwork.IMG_BOLE_FATU = binaryReader.ReadBytes(file.ContentLength);
+                    objPersFatura.IMG_BOLE_FATU = binaryReader.ReadBytes(file.ContentLength);
                 }
 
                 FaturaModel model = new FaturaModel();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, model.Inserir(artwork));
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = artwork.COD_FATU }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, model.Inserir(objPersFatura));
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = objPersFatura.COD_FATU }));
+
+                AtualizarContador(objPersFatura.COD_CONT);
 
                 return response;
             }
@@ -86,22 +88,24 @@ namespace GestaoContas.Controllers
                 if (httpRequest.Files.Count > 0)
                 {
                     var file = httpRequest.Files[0];
-                    var artworkjson = httpRequest.Form[0];
-                    var artwork = JsonConvert.DeserializeObject<TBCCC_006_FATU>(artworkjson);
+                    var objFatura = httpRequest.Form[0];
+                    var objPersFatura = JsonConvert.DeserializeObject<TBCCC_006_FATU>(objFatura);
 
-                    if (artwork == null)
+                    if (objPersFatura == null)
                     {
                         return Request.CreateResponse(HttpStatusCode.BadRequest, "No saved");
                     }
 
                     using (var binaryReader = new BinaryReader(file.InputStream))
                     {
-                        artwork.IMG_BOLE_FATU = binaryReader.ReadBytes(file.ContentLength);
+                        objPersFatura.IMG_BOLE_FATU = binaryReader.ReadBytes(file.ContentLength);
                     }
 
                     FaturaModel model = new FaturaModel();
 
-                    model.Alterar(artwork);
+                    model.Alterar(objPersFatura);
+
+                    AtualizarContador(objPersFatura.COD_CONT);
                 }
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateConcurrencyException ex)
@@ -113,7 +117,7 @@ namespace GestaoContas.Controllers
         }
 
         [HttpDelete]
-        public HttpResponseMessage deletarFatura(int codigoFatura)
+        public HttpResponseMessage deletarFatura(int codigoFatura, int codigoConta)
         {
             FaturaModel model = new FaturaModel();
 
@@ -122,6 +126,8 @@ namespace GestaoContas.Controllers
             try
             {
                 retorno = model.Deletar(codigoFatura);
+
+                AtualizarContador(codigoConta);
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateConcurrencyException ex)
             {
@@ -131,6 +137,24 @@ namespace GestaoContas.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, retorno);
         }
 
+
+        private void AtualizarContador(int CodigoConta)
+        {
+            FaturaModel model = new FaturaModel();            
+
+            var lstFatura = from t in model.findContaFatura(CodigoConta) where t.IND_STAT_FATU.Equals("A") select t;
+
+            if (lstFatura != null)
+            {
+                var objConta = new ContaModel();
+
+                TBCCC_005_CONT conta = objConta.findContaFatura(CodigoConta);
+
+                conta.NUM_FATU_ABER = lstFatura.ToList().Count;
+                objConta.Alterar(conta);
+            }
+
+        }
         
     }
 }

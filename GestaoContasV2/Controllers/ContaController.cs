@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using GestaoContasV2.Models;
+using GestaoContasV2.Controllers.Base;
 
 namespace GestaoContas.Controllers
 {
@@ -20,18 +21,8 @@ namespace GestaoContas.Controllers
 
             if (nomeConta == null && descricaoConta == null && codigoUsuario == 0)
                 lstConta = model.findAll();
-            else
-            {
-                TBCCC_005_CONT conta = model.find(nomeConta, descricaoConta, codigoUsuario);
-
-                if (conta == null)
-                {
-                    //throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-                }
-                else
-                    lstConta.Add(conta);
-            }
-                
+            else           
+                lstConta = model.find(nomeConta, descricaoConta, codigoUsuario);
 
             return lstConta.AsEnumerable();
         }

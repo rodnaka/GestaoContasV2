@@ -1,47 +1,43 @@
-﻿@{
-    ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@section scripts {
-
-    <link href="~/Content/CustomStyle.css" rel="stylesheet" />
+﻿
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Scripts/angular-animate.js"></script>
     <script src="~/Scripts/AngularController/LoginAngularController.js"></script>
-}
-
-<div ng-app="LoginAngularController" id="body">
-    <div class="container-fluid" ng-controller="AngularJs_LoginController">
-        <div class="row" ng-model="Logado">
-            <h1 class="page-header">Login</h1>
+    
+    <div class="container body-content">
+    <div ng-app="LoginAngularController">
+        <div class="container-fluid" ng-controller="AngularJs_LoginController">
+            <div class="row" ng-model="Logado">
+                <h1 class="page-header">Login</h1>
+            </div>
+            <div class="row">
+                <form class="form-group">
+                    <fieldset>
+                        <!-- Form Name -->
+                        <legend>Acessar Conta</legend>
+                        <div class="row">
+                            <!-- Text input-->
+                            <div class="form-group col-md-12">
+                                <label class="control-label" for="txtEmail">Email:</label>
+                                <input id="txtEmail" name="txtEmail" placeholder="Email..." class="form-control input-md" type="text" ng-model="stdEmail">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label" for="txtSenha">Senha:</label>
+                                <input id="txtSenha" name="txtSenha" placeholder="Senha..." class="form-control input-md" type="password" ng-model="stdSenha">
+                            </div>
+                            <!-- Button -->
+                            <div class="form-group col-md-12">
+                                <button id="btnAcessar" name="btnPesquisar" class="btn btn-primary" ng-click="searchStudentDetails()">Acessar</button>
+                            </div>
+                            <div class="form-group col-md-12">
+                                @Html.ActionLink("Novo Usuário", "CadastroLogin", "Home", new { area = "" }, null)
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <br />
         </div>
-        <div class="row">
-            <form class="form-group">
-                <fieldset>
-                    <!-- Form Name -->
-                    <legend>Acessar Conta</legend>
-                    <div class="row">
-                        <!-- Text input-->
-                        <div class="form-group col-md-12">
-                            <label class="control-label" for="txtEmail">Email:</label>
-                            <input id="txtEmail" name="txtEmail" placeholder="Email..." class="form-control input-md" type="text" ng-model="stdEmail">
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label class="control-label" for="txtSenha">Senha:</label>
-                            <input id="txtSenha" name="txtSenha" placeholder="Senha..." class="form-control input-md" type="text" ng-model="stdSenha">
-                        </div>
-                        <!-- Button -->
-                        <div class="form-group col-md-12">
-                            <button id="btnAcessar" name="btnPesquisar" class="btn btn-primary" ng-click="searchStudentDetails()">Acessar</button>                            
-                        </div>
-                        <div class="form-group col-md-12">        
-                            @Html.ActionLink("Novo Usuário", "CadastroLogin", "Home", new { area = "" }, null)
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-        <br />
     </div>
 </div>
+        
 

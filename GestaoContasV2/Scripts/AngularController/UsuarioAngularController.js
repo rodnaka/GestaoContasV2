@@ -5,14 +5,14 @@ var app;
 
 (function () {
    
-    app = angular.module("UsuarioAngularController", ['ngAnimate']);
+    app = angular.module("UsuarioAngularController", ['ngAnimate', 'ui.bootstrap','ui.mask']);
 })();
 
 app.controller("AngularJs_UsuariosController",
     ["$scope", "$timeout", "$rootScope", "$window", "$http",
     function ($scope, $timeout, $rootScope, $window, $http) {
                
-        
+        $scope.OptionSexo = [{ NOM_SEXO: 'Selecione' }, { NOM_SEXO: 'Masculino' }, { NOM_SEXO: 'Feminino' }];
         $scope.COD_USUA = 0;
         $scope.COD_ESTA_CIVI = "";
         $scope.COD_TELE = "";
@@ -80,6 +80,7 @@ app.controller("AngularJs_UsuariosController",
             })
            .error(function (data) {
                $scope.error = "An Error has occured while loading posts!";
+               alert('Ocorreu um problema no processamento!');
            });
         }
 
@@ -98,6 +99,7 @@ app.controller("AngularJs_UsuariosController",
             })
            .error(function (data) {
                $scope.error = "An Error has occured while loading posts!";
+               alert('Ocorreu um problema no processamento!');
            });
         }
 
@@ -109,6 +111,7 @@ app.controller("AngularJs_UsuariosController",
             })
            .error(function (data) {
                $scope.error = "An Error has occured while loading posts!";
+               alert('Ocorreu um problema no processamento!');
            });
         }
 
@@ -125,16 +128,15 @@ app.controller("AngularJs_UsuariosController",
             , DES_LOGR, NUM_NUME, DES_COMP, DES_BAIR, DES_CIDA, DES_ESTA, NUM_DDI_CELU, NUM_DDD_CELU, NUM_TELE_CELU, NUM_DDI_FIXO
             , NUM_DDD_FIXO, NUM_TELE_FIXO, COD_ESTA_CIVI, DESC_ESTA_CIVI) {
            
-            
+                       
             cleardetails();
             $scope.COD_USUA = COD_USUA;
             $scope.NOM_USUA = NOM_USUA
             $scope.DES_EMAIL = DES_EMAIL;
-            $scope.COD_USUA = COD_USUA;
-            $scope.COD_ESTA_CIVI = COD_ESTA_CIVI;
+            $scope.COD_USUA = COD_USUA;           
             $scope.COD_TELE = COD_TELE;
             $scope.NOM_USUA = NOM_USUA;
-            $scope.NOM_SEXO = NOM_SEXO;
+            $scope.NOM_SEXO = NOM_SEXO.trim();
             $scope.NUM_CPF_CNPJ = NUM_CPF_CNPJ;
             $scope.NUM_RG = NUM_RG;
             $scope.DES_EMAIL = DES_EMAIL;
@@ -146,7 +148,7 @@ app.controller("AngularJs_UsuariosController",
             $scope.DES_NATU = DES_NATU;
             $scope.DAT_INCL_USUA = DAT_INCL_USUA;
             $scope.DAT_ALTE_USUA = new Date();
-            $scope.DAT_NASC_USUA = DAT_NASC_USUA;
+            $scope.DAT_NASC_USUA = new Date(DAT_NASC_USUA);
             $scope.IND_STAT_USUA = IND_STAT_USUA;
             $scope.COD_ENDE = COD_ENDE;
             $scope.NUM_CEP = NUM_CEP;
@@ -162,7 +164,7 @@ app.controller("AngularJs_UsuariosController",
             $scope.NUM_DDI_FIXO = NUM_DDI_FIXO;
             $scope.NUM_DDD_FIXO = NUM_DDD_FIXO;
             $scope.NUM_TELE_FIXO = NUM_TELE_FIXO;
-            $scope.COD_ESTA_CIVI = COD_ESTA_CIVI;
+            $scope.COD_ESTA_CIVI = COD_ESTA_CIVI.toString();
             $scope.DESC_ESTA_CIVI = DESC_ESTA_CIVI;
 
             $scope.showStudentAdd = true;
@@ -178,18 +180,19 @@ app.controller("AngularJs_UsuariosController",
 
             cleardetails();
             //$scope.Usuario.COD_USUA = StudentID;
-            var delConfirm = confirm("Are you sure you want to delete the Student " + Name + " ?");
+            var delConfirm = confirm("Deseja realizar a exclusão do usuário " + Name + " ?");
             if (delConfirm == true) {
 
                 var data = $.param({ tbcc001usua: StudentID });
 
                 $http.delete('/api/usuarios/studentDelete?' + data).success(function (data) {
-                      alert("Student Deleted Successfully!!");
+                      alert("Processamento efetuado com sucesso!");
                       cleardetails();
                       selectDetalharUsuario('', '');
                   })
                 .error(function (data) {
                     $scope.error = "An Error has occured while loading posts!";
+                    alert('Ocorreu um problema no processamento!');
                 });
 
             }
@@ -262,7 +265,7 @@ app.controller("AngularJs_UsuariosController",
 
         //Save Student
         $scope.salvarUsuario = function () {
-            
+           
             $scope.IsFormSubmitted = true;
             if ($scope.IsFormValid) {
 
@@ -315,14 +318,18 @@ app.controller("AngularJs_UsuariosController",
                     $http.post('/api/usuarios/inserirUsuario/', $scope.Usuario).success(function (data) {
 
                         $scope.StudentsInserted = data;
-                        alert($scope.StudentsInserted);
+                        //alert($scope.StudentsInserted);
 
                         cleardetails();
+
                         selectDetalharUsuario('', '');
+
+                        alert('Processamento efetuado com sucesso!');
 
                     })
              .error(function () {
                  $scope.error = "An Error has occured while loading posts!";
+                 alert('Ocorreu um problema no processamento!');
              });
                 }
                 else {  // to update to the student details
@@ -331,21 +338,111 @@ app.controller("AngularJs_UsuariosController",
 
                     $http.put('/api/usuarios/alterarUsuario/', $scope.Usuario).success(function (data) {
                         $scope.StudentsUpdated = data;
-                        alert($scope.StudentsUpdated);
+                        //alert($scope.StudentsUpdated);
 
                         cleardetails();
+
                         selectDetalharUsuario('', '');
+
+                        alert('Processamento efetuado com sucesso!');
 
                     })
             .error(function () {
                 $scope.error = "An Error has occured while loading posts!";
+                alert('Ocorreu um problema no processamento!');
             });
                 }
 
             }
             else {
                 $scope.Message = "All the fields are required.";
+                alert('Campos obrigatórios não foram preenchidos');
             }
+        }
+
+        $scope.today = function () {
+
+            $scope.DAT_NASC_USUA = new Date();
+        };
+        $scope.today();
+
+        $scope.clear = function () {
+
+            $scope.DAT_NASC_USUA = null;
+        };
+
+        $scope.inlineOptions = {
+            customClass: getDayClass,
+            minDate: new Date(),
+            showWeeks: true
+        };
+
+        $scope.dateOptions = {
+            dateDisabled: disabled,
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            minDate: new Date(),
+            startingDay: 1
+        };
+
+        // Disable weekend selection
+        function disabled(data) {
+            var date = data.date,
+              mode = data.mode;
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+        }
+
+        $scope.toggleMin = function () {
+            $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+            $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+        };
+
+        $scope.toggleMin();
+
+        $scope.open1 = function () {
+
+            $scope.popup1.Opened = true;
+
+        };
+        $scope.setDate = function (year, month, day) {
+            $scope.DAT_NASC_USUA = new Date(year, month, day);
+        };
+
+        $scope.popup1 = {
+            Opened: false
+        };
+
+        var tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        var afterTomorrow = new Date();
+        afterTomorrow.setDate(tomorrow.getDate() + 1);
+        $scope.events = [
+          {
+              date: tomorrow,
+              status: 'full'
+          },
+          {
+              date: afterTomorrow,
+              status: 'partially'
+          }
+        ];
+
+        function getDayClass(data) {
+            var date = data.date,
+              mode = data.mode;
+            if (mode === 'day') {
+                var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
+
+                for (var i = 0; i < $scope.events.length; i++) {
+                    var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
+
+                    if (dayToCheck === currentDay) {
+                        return $scope.events[i].status;
+                    }
+                }
+            }
+
+            return '';
         }
 
     }]);

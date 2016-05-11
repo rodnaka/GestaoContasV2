@@ -12,9 +12,6 @@
 
 <div ng-app="ContaAngularController" id="body">
     <div class="container-fluid" ng-controller="AngularJs_ContaController">
-        <div class="row" ng-model="Logado">
-            <h1 class="page-header">Bem Vindo {{NOM_USUA}}</h1>
-        </div>
         <div class="row" ng-show="showItem">
             <form class="form-inline">
                 <fieldset>
@@ -24,7 +21,8 @@
                         <!-- Text input-->
                         <div class="form-group col-md-4">
                             <label class="control-label" for="txtNomePesquisa">Nome Conta:</label>
-                            <input id="txtNomePesquisa" name="txtNomePesquisa" placeholder="placeholder" class="form-control input-md" type="text" ng-model="stdNomeConta">
+                            <input id="txtNomePesquisa" name="txtNomePesquisa" placeholder="placeholder"
+                                   class="form-control input-md" type="text" ng-model="stdNomeConta">
                         </div>
                         <div class="form-group col-md-4">
                             <label class="control-label" for="txtEmailPesquisa">Descrição Conta:</label>
@@ -135,11 +133,11 @@
                                     <th>Nome Usuario Conta</th>
                                     <th>Banco</th>
                                     <th>CPF</th>
-                                    <th style="text-align:center">Ação</th>                                    
+                                    <th style="text-align:center">Ação</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-repeat="conta in Contas">                                    
+                                <tr data-ng-repeat="conta in Contas">
                                     <td><span>{{conta.DES_CONT}}</span></td>
                                     <td><span>{{conta.NOM_USUA_CONT}}</span></td>
                                     <td><span>{{conta.COD_BANC}}</span></td>
@@ -165,6 +163,5 @@
         </div>
 
     </div>
-
 </div>
 

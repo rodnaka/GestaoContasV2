@@ -19,11 +19,18 @@ namespace GestaoContasV2.Models
             return selectTBCCC_005_CONT.ToList();
         }
 
-        public TBCCC_005_CONT find(string nomeConta, string descricaoConta, int codigoUsuario)
+        public List<TBCCC_005_CONT> find(string nomeConta, string descricaoConta, int codigoUsuario)
         {
             entity = new DBCCC00Entities();
 
-            return entity.TBCCC_005_CONT.Where(s => s.NOM_USUA_CONT.Contains(nomeConta) || s.DES_CONT.Contains(descricaoConta) || s.COD_USUA == codigoUsuario).FirstOrDefault();            
+            return entity.TBCCC_005_CONT.Where(s => s.NOM_USUA_CONT.Contains(nomeConta) || s.DES_CONT.Contains(descricaoConta) || s.COD_USUA == codigoUsuario).ToList();            
+        }
+
+        public TBCCC_005_CONT findContaFatura(int codigoConta)
+        {
+            entity = new DBCCC00Entities();
+
+            return entity.TBCCC_005_CONT.Where(s => s.COD_CONT == codigoConta).FirstOrDefault();
         }
 
         public int Inserir(TBCCC_005_CONT tbcc005)

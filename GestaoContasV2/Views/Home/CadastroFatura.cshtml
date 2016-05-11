@@ -1,30 +1,34 @@
 ﻿@{
-	ViewBag.Title = "Cadastro Contas";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Cadastro Contas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section scripts {
 
-	<link href="~/Content/CustomStyle.css" rel="stylesheet" />
-	<script src="~/Scripts/angular.js"></script>
-	<script src="~/Scripts/angular-animate.js"></script>
-	<script src="~/Scripts/AngularController/FaturaAngularController.js"></script>
-	<link href="~/Content/themes/base/selectable.css" rel="stylesheet" />
-	<link href="~/Content/themes/base/selectmenu.css" rel="stylesheet" />
-	<link href="~/Content/themes/base/tabs.css" rel="stylesheet" />
-	<link href="~/Content/themes/base/tooltip.css" rel="stylesheet" />
+    <link href="~/Content/CustomStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="~/Scripts/AngularController/FaturaAngularController.js"></script>
+    <link href="~/Content/themes/base/selectable.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/selectmenu.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/tabs.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/tooltip.css" rel="stylesheet" />
 
-	<script type="text/javascript">
-		$(".date-picker").datepicker();
+    <script type="text/javascript">
+        $(".date-picker").datepicker();
 
-		$(".date-picker").on("change", function () {
-			var id = $(this).attr("id");
-			var val = $("label[for='" + id + "']").text();
-		});
+        $(".date-picker").on("change", function () {
 
-		!function (e) {
-			var t = function (t,
+            var id = $(this).attr("id");
+            var val = $("label[for='" + id + "']").text();
+
+        });
+
+        !function (e) {
+            var t = function (t,
 			n) {
-				this.$element = e(t),
+                this.$element = e(t),
 				this.type = this.$element.data("uploadtype") || (this.$element.find(".thumbnail").length > 0 ? "image" : "file"),
 				this.$input = this.$element.find(":file"); if (this.$input.length === 0) return; this.name = this.$input.attr("name") || n.name,
 				this.$hidden = this.$element.find('input[type=hidden][name="' + this.name + '"]'),
@@ -33,60 +37,60 @@
 				this.$preview = this.$element.find(".fileupload-preview"); var r = this.$preview.css("height"); this.$preview.css("display") != "inline" && r != "0px" && r != "none" && this.$preview.css("line-height",
 				r),
 				this.original = {
-					exists: this.$element.hasClass("fileupload-exists"),
-					preview: this.$preview.html(),
-					hiddenVal: this.$hidden.val()
+				    exists: this.$element.hasClass("fileupload-exists"),
+				    preview: this.$preview.html(),
+				    hiddenVal: this.$hidden.val()
 				},
 				this.$remove = this.$element.find('[data-dismiss="fileupload"]'),
 				this.$element.find('[data-trigger="fileupload"]').on("click.fileupload",
 				e.proxy(this.trigger,
 				this)),
 				this.listen()
-			}; t.prototype = {
-				listen: function () {
-					this.$input.on("change.fileupload",
+            }; t.prototype = {
+                listen: function () {
+                    this.$input.on("change.fileupload",
 					e.proxy(this.change,
 					this)),
 					e(this.$input[
 						0
-					].form).on("reset.fileupload",
+                    ].form).on("reset.fileupload",
 					e.proxy(this.reset,
 					this)),
 					this.$remove && this.$remove.on("click.fileupload",
 					e.proxy(this.clear,
 					this))
-				},
-				change: function (e,
+                },
+                change: function (e,
 				t) {
-					if (t === "clear") return; var n = e.target.files !== undefined ? e.target.files[
+                    if (t === "clear") return; var n = e.target.files !== undefined ? e.target.files[
 						0
-					] : e.target.value ? {
-						name: e.target.value.replace(/^.+\\/,
+                    ] : e.target.value ? {
+                        name: e.target.value.replace(/^.+\\/,
 						"")
-					} : null; if (!n) {
-						this.clear(); return
-					} this.$hidden.val(""),
+                    } : null; if (!n) {
+                        this.clear(); return
+                    } this.$hidden.val(""),
 					this.$hidden.attr("name",
 					""),
 					this.$input.attr("name",
 					this.name); if (this.type === "image" && this.$preview.length > 0 && (typeof n.type != "undefined" ? n.type.match("image.*") : n.name.match(/\.(gif|png|jpe?g)$/i)) && typeof FileReader != "undefined") {
-						var r = new FileReader,
+					    var r = new FileReader,
 						i = this.$preview,
 						s = this.$element; r.onload = function (e) {
-							i.html('<img src="' + e.target.result + '" ' + (i.css("max-height") != "none" ? 'style="max-height: ' + i.css("max-height") + ';"' : "") + " />"),
+						    i.html('<img src="' + e.target.result + '" ' + (i.css("max-height") != "none" ? 'style="max-height: ' + i.css("max-height") + ';"' : "") + " />"),
 							s.addClass("fileupload-exists").removeClass("fileupload-new")
 						},
 						r.readAsDataURL(n)
 					} else this.$preview.text(n.name),
 					this.$element.addClass("fileupload-exists").removeClass("fileupload-new")
-				},
-				clear: function (e) {
-					this.$hidden.val(""),
+                },
+                clear: function (e) {
+                    this.$hidden.val(""),
 					this.$hidden.attr("name",
 					this.name),
 					this.$input.attr("name",
 					""); if (navigator.userAgent.match(/msie/i)) {
-						var t = this.$input.clone(!0); this.$input.after(t),
+					    var t = this.$input.clone(!0); this.$input.after(t),
 						this.$input.remove(),
 						this.$input = t
 					} else this.$input.val(""); this.$preview.html(""),
@@ -96,397 +100,417 @@
 						"clear"
 					]),
 					e.preventDefault())
-				},
-				reset: function (e) {
-					this.clear(),
+                },
+                reset: function (e) {
+                    this.clear(),
 					this.$hidden.val(this.original.hiddenVal),
 					this.$preview.html(this.original.preview),
 					this.original.exists ? this.$element.addClass("fileupload-exists").removeClass("fileupload-new") : this.$element.addClass("fileupload-new").removeClass("fileupload-exists")
-				},
-				trigger: function (e) {
-					this.$input.trigger("click"),
+                },
+                trigger: function (e) {
+                    this.$input.trigger("click"),
 					e.preventDefault()
-				}
-			},
+                }
+            },
 			e.fn.fileupload = function (n) {
-				return this.each(function () {
-					var r = e(this),
+			    return this.each(function () {
+			        var r = e(this),
 					i = r.data("fileupload"); i || r.data("fileupload",
 					i = new t(this,
 					n)),
 					typeof n == "string" && i[
 						n
 					]()
-				})
+			    })
 			},
 			e.fn.fileupload.Constructor = t,
 			e(document).on("click.fileupload.data-api",
 			'[data-provides="fileupload"]',
 			function (t) {
-				var n = e(this); if (n.data("fileupload")) return; n.fileupload(n.data()); var r = e(t.target).closest('[data-dismiss="fileupload"],[data-trigger="fileupload"]'); r.length > 0 && (r.trigger("click.fileupload"),
+			    var n = e(this); if (n.data("fileupload")) return; n.fileupload(n.data()); var r = e(t.target).closest('[data-dismiss="fileupload"],[data-trigger="fileupload"]'); r.length > 0 && (r.trigger("click.fileupload"),
 				t.preventDefault())
 			})
-		}(window.jQuery)
-	</script>
+        }(window.jQuery)
+    </script>
 
 }
 
 @section styles{
-	<style type="text/css">
-		body {
-			font-family: 'Open Sans', sans-serif;
-		}
+    <style type="text/css">
+        .full button span {
+            background-color: limegreen;
+            border-radius: 32px;
+            color: black;
+          }
+          .partially button span {
+            background-color: orange;
+            border-radius: 32px;
+            color: black;
+          }
+        .body {
+            font-family: 'Open Sans', sans-serif;
+        }
 
-		.panel-header {
-			background: #f2f2f2;
-			padding: 20px 40px 20px;
-			border-bottom: 1px solid #bbb;
-		}
+        .panel-header {
+            background: #f2f2f2;
+            padding: 20px 40px 20px;
+            border-bottom: 1px solid #bbb;
+        }
 
-		.panel {
-			background: #eee;
-			color: #333;
-			padding: 20px 35px 10px;
-			border-radius: 0;
-		}
+        .panel {
+            background: #eee;
+            color: #333;
+            padding: 20px 35px 10px;
+            border-radius: 0;
+        }
 
-		.close {
-			font-weight: 100;
-			position: relative;
-			top: 1px;
-		}
+        .close {
+            font-weight: 100;
+            position: relative;
+            top: 1px;
+        }
 
-		/* ////////////////// CSS FOR THE COMPONENT ///////////////// */
+        /* ////////////////// CSS FOR THE COMPONENT ///////////////// */
 
-		.clearfix {
-			*zoom: 1;
-		}
+        .clearfix {
+            *zoom: 1;
+        }
 
-			.clearfix:before, .clearfix:after {
-				display: table;
-				content: "";
-				line-height: 0;
-			}
+            .clearfix:before, .clearfix:after {
+                display: table;
+                content: "";
+                line-height: 0;
+            }
 
-			.clearfix:after {
-				clear: both;
-			}
+            .clearfix:after {
+                clear: both;
+            }
 
-		.hide-text {
-			font: 0/0 a;
-			color: transparent;
-			text-shadow: none;
-			background-color: transparent;
-			border: 0;
-		}
+        .hide-text {
+            font: 0/0 a;
+            color: transparent;
+            text-shadow: none;
+            background-color: transparent;
+            border: 0;
+        }
 
-		.input-block-level {
-			display: block;
-			width: 100%;
-			min-height: 30px;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
-		}
+        .input-block-level {
+            display: block;
+            width: 100%;
+            min-height: 30px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
 
-		.btn-file {
-			overflow: hidden;
-			position: relative;
-			vertical-align: middle;
-		}
+        .btn-file {
+            overflow: hidden;
+            position: relative;
+            vertical-align: middle;
+        }
 
-			.btn-file > input {
-				position: absolute;
-				top: 0;
-				right: 0;
-				margin: 0;
-				opacity: 0;
-				filter: alpha(opacity=0);
-				transform: translate300px,0) scale(4);
-				font-size: 23px;
-				direction: ltr;
-				cursor: pointer;
-			}
+            .btn-file > input {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0;
+                opacity: 0;
+                filter: alpha(opacity=0);
+                transform: translate300px,0) scale(4);
+                font-size: 23px;
+                direction: ltr;
+                cursor: pointer;
+            }
 
-		.fileupload {
-			margin-bottom: 9px;
-		}
+        .fileupload {
+            margin-bottom: 9px;
+        }
 
-			.fileupload .uneditable-input {
-				display: inline-block;
-				margin-bottom: 0px;
-				vertical-align: middle;
-				cursor: text;
-			}
+            .fileupload .uneditable-input {
+                display: inline-block;
+                margin-bottom: 0px;
+                vertical-align: middle;
+                cursor: text;
+            }
 
-			.fileupload .thumbnail {
-				overflow: hidden;
-				display: inline-block;
-				margin-bottom: 5px;
-				vertical-align: middle;
-				text-align: center;
-			}
+            .fileupload .thumbnail {
+                overflow: hidden;
+                display: inline-block;
+                margin-bottom: 5px;
+                vertical-align: middle;
+                text-align: center;
+            }
 
-				.fileupload .thumbnail > img {
-					display: inline-block;
-					vertical-align: middle;
-					max-height: 100%;
-				}
+                .fileupload .thumbnail > img {
+                    display: inline-block;
+                    vertical-align: middle;
+                    max-height: 100%;
+                }
 
-			.fileupload .btn {
-				vertical-align: middle;
-			}
+            .fileupload .btn {
+                vertical-align: middle;
+            }
 
-		.fileupload-exists .fileupload-new, .fileupload-new .fileupload-exists {
-			display: none;
-		}
+        .fileupload-exists .fileupload-new, .fileupload-new .fileupload-exists {
+            display: none;
+        }
 
-		.fileupload-inline .fileupload-controls {
-			display: inline;
-		}
+        .fileupload-inline .fileupload-controls {
+            display: inline;
+        }
 
-		.fileupload-new .input-append .btn-file {
-			-webkit-border-radius: 0 3px 3px 0;
-			-moz-border-radius: 0 3px 3px 0;
-			border-radius: 0 3px 3px 0;
-		}
+        .fileupload-new .input-append .btn-file {
+            -webkit-border-radius: 0 3px 3px 0;
+            -moz-border-radius: 0 3px 3px 0;
+            border-radius: 0 3px 3px 0;
+        }
 
-		.thumbnail-borderless .thumbnail {
-			border: none;
-			padding: 0;
-			-webkit-border-radius: 0;
-			-moz-border-radius: 0;
-			border-radius: 0;
-			-webkit-box-shadow: none;
-			-moz-box-shadow: none;
-			box-shadow: none;
-		}
+        .thumbnail-borderless .thumbnail {
+            border: none;
+            padding: 0;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
 
-		.fileupload-new.thumbnail-borderless .thumbnail {
-			border: 1px solid #ddd;
-		}
+        .fileupload-new.thumbnail-borderless .thumbnail {
+            border: 1px solid #ddd;
+        }
 
-		.control-group.warning .fileupload .uneditable-input {
-			color: #a47e3c;
-			border-color: #a47e3c;
-		}
+        .control-group.warning .fileupload .uneditable-input {
+            color: #a47e3c;
+            border-color: #a47e3c;
+        }
 
-		.control-group.warning .fileupload .fileupload-preview {
-			color: #a47e3c;
-		}
+        .control-group.warning .fileupload .fileupload-preview {
+            color: #a47e3c;
+        }
 
-		.control-group.warning .fileupload .thumbnail {
-			border-color: #a47e3c;
-		}
+        .control-group.warning .fileupload .thumbnail {
+            border-color: #a47e3c;
+        }
 
-		.control-group.error .fileupload .uneditable-input {
-			color: #b94a48;
-			border-color: #b94a48;
-		}
+        .control-group.error .fileupload .uneditable-input {
+            color: #b94a48;
+            border-color: #b94a48;
+        }
 
-		.control-group.error .fileupload .fileupload-preview {
-			color: #b94a48;
-		}
+        .control-group.error .fileupload .fileupload-preview {
+            color: #b94a48;
+        }
 
-		.control-group.error .fileupload .thumbnail {
-			border-color: #b94a48;
-		}
+        .control-group.error .fileupload .thumbnail {
+            border-color: #b94a48;
+        }
 
-		.control-group.success .fileupload .uneditable-input {
-			color: #468847;
-			border-color: #468847;
-		}
+        .control-group.success .fileupload .uneditable-input {
+            color: #468847;
+            border-color: #468847;
+        }
 
-		.control-group.success .fileupload .fileupload-preview {
-			color: #468847;
-		}
+        .control-group.success .fileupload .fileupload-preview {
+            color: #468847;
+        }
 
-		.fileupload .fileupload-preview {
-			padding: 0 10px;
-		}
+        .fileupload .fileupload-preview {
+            padding: 0 10px;
+        }
 
-		.control-group.success .fileupload .thumbnail {
-			border-color: #468847;
-		}
-	</style>
+        .control-group.success .fileupload .thumbnail {
+            border-color: #468847;
+        }
+    </style>
 }
 <div ng-app="FaturaAngularController" id="body">
-	<div class="container-fluid" ng-controller="AngularJs_FaturaController">
-		<div class="row" ng-model="Logado">
-			<h1 class="page-header">Bem Vindo {{NOM_USUA}}</h1>
-		</div>
-		<div class="row">
-			<div class="form-group col-md-12">				
-				<a href ng-click="exibirCadastro()" id="lnkNovo">Nova Fatura</a>
-			</div>
-		</div>
-		<div class="row" ng-show="addEdit">
-			<form class="form-group" novalidate name="formSalvar" ng-submit="salvarFatura()">
-				<fieldset>
-					<!-- Form Name -->
-					<legend>Cadastro Fatura</legend>
-					<div class="row">
-						<div class="form-group col-md-4">
-							<label class="control-label" for="txtCodigoFatura">Código Fatura:</label>
-							<input id="txtCodigoFatura" name="txtCodigoFatura" placeholder="placeholder" class="form-control input-md"
-								   type="text" ng-model="COD_FATU" readonly>
-						</div>
-						<div class="form-group col-md-8">
-							<label class="control-label" for="ddlConta">Codigo Conta:</label>
-							<select id="ddlConta" name="ddlConta" class="form-control" ng-model="COD_CONT">
-								<option ng-repeat="item in Contas" ng-selected="item.COD_CONT == COD_CONT" value="{{item.COD_CONT}}">{{item.DES_CONT}}</option>
-							</select>
-						</div>
-					</div>
-					<!-- Text input-->
-					<div class="row">
-						<div class="form-group col-md-4">
-							<label class="control-label" for="txtDescricaoFatura">Descrição Fatura:</label>
-							<input id="txtDescricaoFatura" name="txtDescricaoFatura" class="form-control input-md" type="text" ng-model="DES_FATU"
-								   placeholder="Descrição Fatura..." required>
+    <div class="container-fluid" ng-controller="AngularJs_FaturaController">
+        <br />
+        <div class="row">
+            <div class="form-group col-md-12">
+                <a href ng-click="exibirCadastro()" id="lnkNovo">Nova Fatura</a>
+            </div>
+        </div>
+        <div class="row" ng-show="addEdit">
+            <form class="form-group" novalidate name="formSalvar" ng-submit="salvarFatura()">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Cadastro Fatura</legend>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="txtCodigoFatura">Código Fatura:</label>
+                            <input id="txtCodigoFatura" name="txtCodigoFatura" placeholder="placeholder" class="form-control input-md"
+                                   type="text" ng-model="COD_FATU" readonly>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="control-label" for="ddlConta">Codigo Conta:</label>
+                            <select id="ddlConta" name="ddlConta" class="form-control" ng-model="COD_CONT">
+                                <option ng-repeat="item in Contas" ng-selected="item.COD_CONT == COD_CONT"
+                                        value="{{item.COD_CONT}}">
+                                    {{item.DES_CONT}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="txtDescricaoFatura">Descrição Fatura:</label>
+                            <input id="txtDescricaoFatura" name="txtDescricaoFatura" class="form-control input-md" type="text" ng-model="DES_FATU"
+                                   placeholder="Descrição Fatura..." required>
 
-						</div>
-						<div class="form-group col-md-4">
-							<label class="control-label" for="txtDataUpload">Data Upload:</label>
-							<div class="controls">
-								<div class="input-group col-md-9">
-									<input id="txtDataUpload" name="txtDataUpload" class="date-picker form-control" type="text" ng-model="DAT_UPLO_FATU"
-										   placeholder="Data Upload..." required>
-									<label for="txtDataUpload" class="input-group-addon btn">
-										<span class="glyphicon glyphicon-calendar"></span>
-									</label>
-								</div>
-							</div>
-						</div>
-						<div class="form-group col-md-4">
-							<label class="control-label" for="txtDataVencimento">Data Vencimento:</label>
-							<div class="controls">
-								<div class="input-group col-md-9">
-									<input id="txtDataVencimento" name="txtDataVencimento" class="date-picker form-control" type="text" ng-model="DAT_VENC_FATU"
-										   placeholder="Data Vencimento..." required>
-									<label for="txtDataVencimento" class="input-group-addon btn">
-										<span class="glyphicon glyphicon-calendar"></span>
-									</label>
-								</div>
-							</div>
-						</div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="txtDataUpload">Data Upload:</label>
+                            <div class="controls">
+                                <div class="input-group col-md-9">
+                                    <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="DAT_UPLO_FATU"
+                                           is-open="popup1.Opened" ng-click="open1();" ng-required="true" close-text="Close"
+                                           id="txtDataUpload" name="txtDataUpload" />
+                                    <span class="input-group-btn" for="txtDataUpload">
+                                        <button type="button" class="btn btn-default" for="txtDataUpload"
+                                                ng-click="open1();$event.stopPropagation();">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
 
-					</div>
-					<div class="row">
-						<div class="fileupload fileupload-new form-group col-md-12" data-provides="fileupload">
-							<span class="btn btn-success btn-file btn-lg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label" for="txtDataVencimento">Data Vencimento:</label>
+                            <div class="controls">
+                                <div class="input-group col-md-9">
+                                    <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="DAT_VENC_FATU"
+                                           is-open="popup2.Opened" ng-click="open2();" ng-required="true" close-text="Close"
+                                           id="txtDataVencimento" name="txtDataVencimento" />
+                                    <span class="input-group-btn" for="txtDataVencimento">
+                                        <button type="button" class="btn btn-default"
+                                                ng-click="open2();$event.stopPropagation();" for="txtDataVencimento">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
 
-								<span class="fileupload-new">
-									<span class="glyphicon glyphicon-cloud-upload"></span> Select file
-								</span>
-								<span class="fileupload-exists">
-									<span class="glyphicon glyphicon-repeat"></span> Change
-								</span>
-								<input type="file" id="file" name="file" class="file" onchange="angular.element(this).scope().selectFileforUpload(this.files)"
-									   required />
-							</span>
+                                </div>
+                            </div>
+                        </div>
 
-							<span class="fileupload-preview"></span>
+                    </div>
+                    <div class="row">
+                        <div class="fileupload fileupload-new form-group col-md-12" data-provides="fileupload">
+                            <span class="btn btn-success btn-file btn-lg">
 
-							<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">
-								x
-							</a>
-						</div>
-						
-					</div>
+                                <span class="fileupload-new">
+                                    <span class="glyphicon glyphicon-cloud-upload"></span> Select file
+                                </span>
+                                <span class="fileupload-exists">
+                                    <span class="glyphicon glyphicon-repeat"></span> Change
+                                </span>
+                                <input type="file" id="file" name="file" class="file" onchange="angular.element(this).scope().selectFileforUpload(this.files)" />
+                            </span>
 
-					<div class="row">
-						<!-- Button -->
-						<div class="col-md-12">
+                            <span class="fileupload-preview"></span>
 
-							<input type="submit" class="btn btn-primary" value="Salvar" required />
-							<a href="~/Home/CadastroFatura" class="btn btn-default">Cancelar</a>
+                            <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">
+                                x
+                            </a>
+                        </div>
 
-						</div>
-					</div>
+                    </div>
 
-				</fieldset>
-			</form>
-		</div>
-		<div class="row">
-			<form class="form-group">
-				<div class="row">
-					<div class="col-sm-2 col-md-2 sidebar">
-						<br />
-						<h1 class="page-header">Pastas</h1>
-						<ul class="nav nav-sidebar" ng-repeat="conta in Contas">
-							<li>
-								<a href ng-click="consultarFatura(conta.COD_CONT)">{{conta.DES_CONT}}</a>
-							</li>
+                    <div class="row">
+                        <!-- Button -->
+                        <div class="col-md-12">
 
-						</ul>
-					</div>
+                            <input type="submit" class="btn btn-primary" value="Salvar" required />
+                            <a href="~/Home/CadastroFatura" class="btn btn-default">Cancelar</a>
 
-					<div class="col-sm-10 col-md-10 main">
-						<br />
-						<h1 class="page-header">Faturas</h1>
-						<div class="table-responsive">
-							<table class="table table-striped table-hover">
-								<thead>
-									<tr>
-										<th>Descrição</th>
-										<th>Data Upload</th>
-										<th>Data Vencimento</th>
-										<th>Situação</th>
-										<th style="text-align:center">Ação</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr data-ng-repeat="fatura in Faturas">
-										<td><span>{{fatura.DES_FATU}}</span></td>
-										<td><span>{{fatura.DAT_UPLO_FATU |date: 'dd/MM/yyyy'}}</span></td>
-										<td><span>{{fatura.DAT_VENC_FATU |date: 'dd/MM/yyyy'}}</span></td>
-										<td ng-if="fatura.IND_STAT_FATU == 'A'"><span>Em aberto</span></td>
-										<td ng-if="fatura.IND_STAT_FATU == 'P'"><span>Pago</span></td>
-										<td align="center">
-											<span>
-												<button type="button" class="btn btn-danger" alt="Deletar" ng-click="faturaDelete(fatura.COD_FATU,fatura.DES_FATU,fatura.COD_CONT)">Deletar</button>
-												<button type="button" class="btn btn-default" alt="Visualizar" ng-click="exibirFatura(fatura.COD_FATU)">Visualizar</button>
-												<button type="button" class="btn btn-warning" alt="Editar"
-														ng-click="faturaEditar(fatura.COD_FATU, fatura.COD_CONT, fatura.DES_FATU, fatura.DAT_UPLO_FATU
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+        <div class="row">
+            <form class="form-group">
+                <div class="row">
+                    <div class="col-sm-2 col-md-2 sidebar">
+                        <br />
+                        <h1 class="page-header">Pastas</h1>
+                        <ul class="nav nav-sidebar" ng-repeat="conta in Contas">
+                            <li>
+                                <a href="#" ng-click="consultarFatura(conta.COD_CONT)">{{conta.DES_CONT}}<span class="badge">{{conta.NUM_FATU_ABER}}</span></a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-10 col-md-10 main">
+                        <br />
+                        <h1 class="page-header">Faturas</h1>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Descrição</th>
+                                        <th>Data Upload</th>
+                                        <th>Data Vencimento</th>
+                                        <th>Situação</th>
+                                        <th style="text-align:center">Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="fatura in Faturas">
+                                        <td><span>{{fatura.DES_FATU}}</span></td>
+                                        <td><span>{{fatura.DAT_UPLO_FATU |date: 'dd/MM/yyyy'}}</span></td>
+                                        <td><span>{{fatura.DAT_VENC_FATU |date: 'dd/MM/yyyy'}}</span></td>
+                                        <td ng-if="fatura.IND_STAT_FATU == 'A'"><span>Em aberto</span></td>
+                                        <td ng-if="fatura.IND_STAT_FATU == 'P'"><span>Pago</span></td>
+                                        <td align="center">
+                                            <span>
+                                                <button type="button" class="btn btn-danger" alt="Deletar" ng-click="faturaDelete(fatura.COD_FATU,fatura.DES_FATU,fatura.COD_CONT)">Deletar</button>
+                                                <button type="button" class="btn btn-default" alt="Visualizar" ng-click="exibirFatura(fatura.COD_FATU)">Visualizar</button>
+                                                <button type="button" class="btn btn-warning" alt="Editar"
+                                                        ng-click="faturaEditar(fatura.COD_FATU, fatura.COD_CONT, fatura.DES_FATU, fatura.DAT_UPLO_FATU
 																			,fatura.DAT_VENC_FATU, fatura.IMG_BOLE_FATU,fatura.IND_STAT_FATU)">
-													Editar
-												</button>
-											</span>
-										</td>
+                                                    Editar
+                                                </button>
+                                            </span>
+                                        </td>
 
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<!-- Modal -->
-					<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="vertical-alignment-helper">
-							<div class="modal-dialog vertical-align-center">
-								<!-- Modal content-->
-								<div class="modal-content" style="width:90%;height:90%;">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">Fatura Digital</h4>
-									</div>
-									<div class="modal-body">
-										<iframe src="{{content}}"
-												style="width:100%; height:450px;" frameborder="0"></iframe>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="vertical-alignment-helper">
+                            <div class="modal-dialog vertical-align-center">
+                                <!-- Modal content-->
+                                <div class="modal-content" style="width:90%;height:90%;">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Fatura Digital</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <iframe src="{{content}}"
+                                                style="width:100%; height:450px;" frameborder="0"></iframe>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
 
 
-	</div>
+    </div>
 
 </div>
 
